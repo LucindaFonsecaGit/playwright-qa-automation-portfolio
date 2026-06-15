@@ -16,4 +16,9 @@ export class InventoryPage {
         await expect(this.page.locator('[data-test="inventory-list"]')).toBeVisible();
         await expect(this.page.locator('[data-test="inventory-item"]')).toHaveCount(6);
     }
+
+    async logout() {
+        await this.page.locator('#react-burger-menu-btn').click();
+        await this.page.locator('[data-test="logout-sidebar-link"]').click();
+    }
 }

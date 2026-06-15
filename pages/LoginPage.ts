@@ -17,6 +17,10 @@ export class LoginPage {
         await this.page.locator('[data-test="login-button"]').click();
     }
 
+    async submitLoginForm() {
+        await this.page.locator('[data-test="login-button"]').click();
+    }
+
     async expectLoginPageVisible() {
         await expect(this.page.locator('[data-test="username"]')).toBeVisible();
         await expect(this.page.locator('[data-test="password"]')).toBeVisible();
@@ -25,5 +29,9 @@ export class LoginPage {
 
     async expectErrorMessage(message: string) {
         await expect(this.page.locator('[data-test="error"]')).toContainText(message);
+    }
+
+    async expectUsernameFieldFocused() {
+        await expect(this.page.locator('[data-test="username"]')).toBeFocused();
     }
 }
