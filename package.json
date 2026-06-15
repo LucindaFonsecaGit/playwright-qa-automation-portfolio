@@ -1,0 +1,22 @@
+{
+  "name": "playwright-qa-automation-portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucindaFonsecaGit/playwright-qa-automation-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucindaFonsecaGit/playwright-qa-automation-portfolio/issues"
+  },
+  "homepage": "https://github.com/LucindaFonsecaGit/playwright-qa-automation-portfolio#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^25.9.3"
+  }
+}
