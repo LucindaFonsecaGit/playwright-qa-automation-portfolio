@@ -1,12 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { LoginPage } from '../../pages/LoginPage';
 
 test.describe('Homepage smoke tests', () => {
-    test('should load the homepage successfully', async ({ page }) => {
-        await page.goto('https://www.saucedemo.com/');
+    test('should display the login page successfully', async ({ page }) => {
+        const loginPage = new LoginPage(page);
 
-        await expect(page).toHaveTitle(/Swag Labs/);
-        await expect(page.locator('[data-test="username"]')).toBeVisible();
-        await expect(page.locator('[data-test="password"]')).toBeVisible();
-        await expect(page.locator('[data-test="login-button"]')).toBeVisible();
+        await loginPage.goto();
+        await loginPage.expectLoginPageVisible();
     });
 });
