@@ -17,6 +17,26 @@ export class InventoryPage {
         await expect(this.page.locator('[data-test="inventory-item"]')).toHaveCount(6);
     }
 
+    async sortBy(option: string) {
+        await this.page.locator('[data-test="product-sort-container"]').selectOption(option);
+    }
+
+    async expectFirstProductName(name: string) {
+        await expect(this.page.locator('[data-test="inventory-item-name"]').first()).toHaveText(name);
+    }
+
+    async addProductToCart(productTestId: string) {
+        await this.page.locator(`[data-test="add-to-cart-${productTestId}"]`).click();
+    }
+
+    async openCart() {
+        await this.page.locator('[data-test="shopping-cart-link"]').click();
+    }
+
+    async expectCartBadgeCount(count: string) {
+        await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toHaveText(count);
+    }
+
     async logout() {
         await this.page.locator('#react-burger-menu-btn').click();
         await this.page.locator('[data-test="logout-sidebar-link"]').click();
