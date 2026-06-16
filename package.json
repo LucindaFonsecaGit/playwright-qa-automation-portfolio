@@ -6,6 +6,11 @@
     "test": "playwright test",
     "test:ui": "playwright test tests/ui",
     "test:api": "playwright test tests/api",
+    "test:responsive": "playwright test tests/responsive",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:mobile": "playwright test --project=\"Mobile Chrome\" --project=\"Mobile Safari\"",
     "test:smoke": "playwright test --grep @smoke",
     "test:regression": "playwright test --grep @regression",
     "report": "playwright show-report"

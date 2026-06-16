@@ -73,7 +73,7 @@ The API layer is structured with:
 - separated test data
 - smoke/regression/negative tags
 
-See [`docs/api-testing-strategy.md`](docs/api-testing-strategy.md) for more details.
+See [api-testing-strategy.md](docs/api-testing-strategy.md) for more details.
 
 ## Data-Driven Testing
 
@@ -93,6 +93,44 @@ Test data is stored separately under:
 test-data/ui/
 test-data/api/
 ```
+
+## Cross-Browser and Responsive Testing
+
+This repository supports execution across:
+
+- Chromium
+- Firefox
+- WebKit
+- Mobile Chrome
+- Mobile Safari
+
+Responsive tests are located under:
+
+```text
+tests/responsive/
+```
+
+Useful commands:
+```bash
+npm run test:responsive
+```
+
+```bash
+npm run test:chromium
+```
+
+```bash
+npm run test:firefox
+```
+
+```bash
+npm run test:webkit
+```
+
+```bash
+npm run test:mobile
+```
+See [cross-browser-testing.md](docs/cross-browser-testing.md) for more details.
 
 ## How to Run Tests
 Install dependencies:
@@ -131,8 +169,27 @@ Run ui tests:
 npm run test:ui
 ```
 
+Run responsive tests:
+```bash
+npm run test:responsive
+```
+
+Run only Chromium:
+```bash
+npm run test:chromium
+```
+
+Run mobile projects:
+```bash
+npm run test:mobile
+```
+
+Run everything:
+```bash
+npm test
+```
+
 Open report:
 ```bash
 npx playwright show-report
 ```
-

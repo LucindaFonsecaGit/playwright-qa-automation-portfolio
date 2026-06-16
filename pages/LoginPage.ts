@@ -11,6 +11,10 @@ export class LoginPage {
         await this.page.goto('https://www.saucedemo.com/');
     }
 
+    async expectLogoVisible() {
+        await expect(this.page.locator('.login_logo')).toBeVisible();
+    }
+
     async login(username: string, password: string) {
         await this.page.locator('[data-test="username"]').fill(username);
         await this.page.locator('[data-test="password"]').fill(password);
