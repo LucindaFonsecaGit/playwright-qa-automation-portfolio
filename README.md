@@ -1,195 +1,112 @@
 # Playwright QA Automation Portfolio
 
-This repository demonstrates a professional QA automation framework using Playwright and TypeScript.
+A professional QA automation framework built with Playwright and TypeScript.
 
-It is designed as a portfolio project to showcase practical skills in:
+This repository demonstrates how I would structure an automation framework for a modern web application, including UI automation, API testing, responsive testing, data-driven testing, CI/CD integration, and maintainable Page Object Model architecture.
 
-- UI test automation
-- API testing
-- Smoke and regression testing
-- Cross-browser testing
-- Test reporting
-- CI/CD with GitHub Actions
+## Features
+
+- UI Automation (Playwright)
+- REST API Testing
+- Page Object Model
+- Data-Driven Testing
+- Cross-Browser Testing
+- Responsive Testing
+- Smoke Testing
+- Regression Testing
+- GitHub Actions CI/CD
+- HTML Reporting
 - BDD examples with Gherkin
-- QA documentation and test strategy
-
-## Portfolio Goal
-The goal of this repository is to demonstrate how I would structure and maintain a QA automation framework in a professional software engineering environment.
+- Reusable API Client
+- Reusable Assertion Helpers
+- QA Documentation
 
 ## Tech Stack
 
-- Playwright
-- TypeScript
-- Node.js
-- GitHub Actions
-- HTML test reports
-- JUnit reports
+| Technology     | Purpose             |
+| -------------- | ------------------- |
+| Playwright     | UI & API Automation |
+| TypeScript     | Test implementation |
+| Node.js        | Runtime             |
+| GitHub Actions | CI/CD               |
+| Cucumber       | BDD examples        |
+| HTML Reports   | Test reporting      |
 
-## Project Structure
-
+## Repository Structure
 ```text
-docs/              QA strategy and test documentation
-pages/             Page Object Model classes
-fixtures/          Test fixtures and reusable setup
-test-data/         Test data files
-tests/ui/          UI automation tests
-tests/api/         REST API tests
-tests/bdd/         BDD/Gherkin examples
-tests/integration/ Integration test flows
-tests/responsive/  Responsive design tests
-tests/accessibility/ Accessibility tests
-utils/             Helper functions
+docs/
+pages/
+test-data/
+tests/
+api/
+bdd/
+responsive/
+ui/
+utils/
+api/
+fixtures/
 ```
-
-## API Testing
-
-This repository includes REST API tests using Playwright's `request` fixture and the FakeStore API.
-
-Covered examples:
-
-- GET all products
-- GET single product
-- GET product categories
-- GET products by category
-- POST create product
-- PUT update product
-- DELETE product
-- Invalid endpoint validation
-
-These tests validate:
-
-- HTTP status codes
-- Response headers
-- JSON response structure
-- Required fields
-- Data consistency
-- Positive and negative API behaviour
-- Basic response time thresholds
-
-The API layer is structured with:
-
-- reusable API client methods
-- reusable assertion helpers
-- separated test data
-- smoke/regression/negative tags
-
-See [api-testing-strategy.md](docs/api-testing-strategy.md) for more details.
-
-## Data-Driven Testing
-
-This repository uses data-driven testing to run the same scenarios with multiple datasets.
-
-Examples include:
-
-- Multiple valid login users
-- Multiple invalid login combinations
-- Multiple product sorting options
-- Multiple cart products
-- Multiple checkout customers
-
-Test data is stored separately under:
-
+## Test Architecture
 ```text
-test-data/ui/
-test-data/api/
+Test
+↓
+Page Object
+↓
+Reusable Helpers
+↓
+Playwright
+↓
+Application
 ```
-
-## Cross-Browser and Responsive Testing
-
-This repository supports execution across:
-
-- Chromium
-- Firefox
-- WebKit
-- Mobile Chrome
-- Mobile Safari
-
-Responsive tests are located under:
-
+For the API Layer
 ```text
-tests/responsive/
+API Test
+      ↓
+API Client
+      ↓
+Assertion Helpers
+      ↓
+Public REST API
 ```
 
-Useful commands:
-```bash
-npm run test:responsive
-```
+## Running The Project
 
-```bash
-npm run test:chromium
-```
+| Command                 | Description              |
+| ----------------------- | ------------------------ |
+| npm test                | Run all Playwright tests |
+| npm run test:ui         | UI tests                 |
+| npm run test:api        | API tests                |
+| npm run test:responsive | Responsive tests         |
+| npm run test:smoke      | Smoke suite              |
+| npm run test:regression | Regression suite         |
+| npm run report          | Open HTML report         |
 
-```bash
-npm run test:firefox
-```
 
-```bash
-npm run test:webkit
-```
+## Continuous Integration
 
-```bash
-npm run test:mobile
-```
-See [cross-browser-testing.md](docs/cross-browser-testing.md) for more details.
+The framework is automatically executed using GitHub Actions.
 
-## How to Run Tests
-Install dependencies:
-```bash
-npm install
-```
+Pipeline includes:
 
-Run all tests:
-```bash
-npx playwright test
-```
+- Install dependencies
+- Install Playwright browsers
+- Execute all tests
+- Publish HTML report
 
-Run UI tests:
-```bash
-npx playwright test tests/ui
-```
+## Documentation
 
-Run API tests:
-```bash
-npm run test:api
-```
+- API Testing Strategy[api-testing-strategy.md](docs/api-testing-strategy.md)
+- Cross-Browser Testing Strategy[cross-browser-testing.md](docs/cross-browser-testing.md)
 
-Run smoke tests:
-```bash
-npm run test:smoke
-```
 
-Run regression tests:
-```bash
-npm run test:regression
-```
+## Future Improvements
 
-Run ui tests:
-
-```bash
-npm run test:ui
-```
-
-Run responsive tests:
-```bash
-npm run test:responsive
-```
-
-Run only Chromium:
-```bash
-npm run test:chromium
-```
-
-Run mobile projects:
-```bash
-npm run test:mobile
-```
-
-Run everything:
-```bash
-npm test
-```
-
-Open report:
-```bash
-npx playwright show-report
-```
+- Accessibility testing
+- Visual regression testing
+- Docker execution
+- Allure reporting
+- Contract testing
+- Performance testing
+- BDD Strategy doc
+- Regression Strategy doc
+- Test Strategy doc
