@@ -41,42 +41,6 @@ tests/accessibility/ Accessibility tests
 utils/             Helper functions
 ```
 
-## How to Run Tests
-Install dependencies:
-```bash
-npm install
-```
-
-Run all tests:
-```bash
-npx playwright test
-```
-
-Run UI tests:
-```bash
-npx playwright test tests/ui
-```
-
-Run API tests:
-```bash
-npm run test:api
-```
-
-Run smoke tests:
-```bash
-npm run test:smoke
-```
-
-Run regression tests:
-```bash
-npm run test:regression
-```
-
-Open report:
-```bash
-npx playwright show-report
-```
-
 ## API Testing
 
 This repository includes REST API tests using Playwright's `request` fixture and the FakeStore API.
@@ -110,3 +74,65 @@ The API layer is structured with:
 - smoke/regression/negative tags
 
 See [`docs/api-testing-strategy.md`](docs/api-testing-strategy.md) for more details.
+
+## Data-Driven Testing
+
+This repository uses data-driven testing to run the same scenarios with multiple datasets.
+
+Examples include:
+
+- Multiple valid login users
+- Multiple invalid login combinations
+- Multiple product sorting options
+- Multiple cart products
+- Multiple checkout customers
+
+Test data is stored separately under:
+
+```text
+test-data/ui/
+test-data/api/
+```
+
+## How to Run Tests
+Install dependencies:
+```bash
+npm install
+```
+
+Run all tests:
+```bash
+npx playwright test
+```
+
+Run UI tests:
+```bash
+npx playwright test tests/ui
+```
+
+Run API tests:
+```bash
+npm run test:api
+```
+
+Run smoke tests:
+```bash
+npm run test:smoke
+```
+
+Run regression tests:
+```bash
+npm run test:regression
+```
+
+Run ui tests:
+
+```bash
+npm run test:ui
+```
+
+Open report:
+```bash
+npx playwright show-report
+```
+

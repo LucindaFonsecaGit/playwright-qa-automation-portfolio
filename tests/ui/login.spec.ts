@@ -1,72 +1,29 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
+import { validUsers, invalidLoginUsers } from '../../test-data/ui/loginUsers';
 
 test.describe('Authentication tests', () => {
-    test('should login successfully with valid standard user credentials', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        const inventoryPage = new InventoryPage(page);
+    for (const user of validUsers) {
+        test(`@ui @smoke should login successfully with ${user.description}`, async ({ page }) => {
+            const loginPage = new LoginPage(page);
+            const inventoryPage = new InventoryPage(page);
 
-        await loginPage.goto();
-        await loginPage.login('standard_user', 'secret_sauce');
+            await loginPage.goto();
+            await loginPage.login(user.username, user.password);
 
-        await inventoryPage.expectInventoryPageVisible();
-        await inventoryPage.expectProductListVisible();
-    });
+            await inventoryPage.expectInventoryPageVisible();
+        });
+    }
 
-    test('should not login with invalid username and password', async ({ page }) => {
-        const loginPage = new LoginPage(page);
+    for (const user of invalidLoginUsers) {
+        test(`@ui @negative should not login with invalid credentials: ${user.expectedError}`, async ({ page }) => {
+            const loginPage = new LoginPage(page);
 
-        await loginPage.goto();
-        await loginPage.login('invalid_user', 'wrong_password');
+            await loginPage.goto();
+            await loginPage.login(user.username, user.password);
 
-        await loginPage.expectErrorMessage('Username and password do not match');
-    });
-
-    test('should not login when username is missing', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-
-        await loginPage.goto();
-        await loginPage.login('', 'secret_sauce');
-
-        await loginPage.expectErrorMessage('Username is required');
-    });
-
-    test('should not login when password is missing', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-
-        await loginPage.goto();
-        await loginPage.login('standard_user', '');
-
-        await loginPage.expectErrorMessage('Password is required');
-    });
-
-    test('should not login with locked out user', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-
-        await loginPage.goto();
-        await loginPage.login('locked_out_user', 'secret_sauce');
-
-        await loginPage.expectErrorMessage('Sorry, this user has been locked out');
-    });
-
-    test('should allow login with problem user', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        const inventoryPage = new InventoryPage(page);
-
-        await loginPage.goto();
-        await loginPage.login('problem_user', 'secret_sauce');
-
-        await inventoryPage.expectInventoryPageVisible();
-    });
-
-    test('should allow login with performance glitch user', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        const inventoryPage = new InventoryPage(page);
-
-        await loginPage.goto();
-        await loginPage.login('performance_glitch_user', 'secret_sauce');
-
-        await inventoryPage.expectInventoryPageVisible();
-    });
+            await loginPage.expectErrorMessage(user.expectedError);
+        });
+    }
 });

@@ -3,30 +3,36 @@ import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
 import { CheckoutPage } from '../../pages/CheckoutPage';
+import { checkoutCustomers } from '../../test-data/ui/checkoutCustomers';
 
 test.describe('Checkout smoke tests', () => {
-    test('should complete checkout successfully with one product', async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        const inventoryPage = new InventoryPage(page);
-        const cartPage = new CartPage(page);
-        const checkoutPage = new CheckoutPage(page);
+    for (const customer of checkoutCustomers) {
+        test(`@ui @smoke should complete checkout successfully for ${customer.description}`, async ({ page }) => {
+            const loginPage = new LoginPage(page);
+            const inventoryPage = new InventoryPage(page);
+            const cartPage = new CartPage(page);
+            const checkoutPage = new CheckoutPage(page);
 
-        await loginPage.goto();
-        await loginPage.login('standard_user', 'secret_sauce');
+            await loginPage.goto();
+            await loginPage.login('standard_user', 'secret_sauce');
 
-        await inventoryPage.addProductToCart('sauce-labs-backpack');
-        await inventoryPage.openCart();
+            await inventoryPage.addProductToCart('sauce-labs-backpack');
+            await inventoryPage.openCart();
 
-        await cartPage.expectCartPageVisible();
-        await cartPage.proceedToCheckout();
+            await cartPage.expectCartPageVisible();
+            await cartPage.proceedToCheckout();
 
-        await checkoutPage.expectCheckoutInformationPageVisible();
-        await checkoutPage.fillCustomerInformation('Lucinda', 'Fonseca', '3060-000');
-        await checkoutPage.continueCheckout();
+            await checkoutPage.expectCheckoutInformationPageVisible();
+            await checkoutPage.fillCustomerInformation(
+                customer.firstName,
+                customer.lastName,
+                customer.postalCode
+            );
 
-        await checkoutPage.expectOverviewPageVisible();
-        await checkoutPage.finishCheckout();
-
-        await checkoutPage.expectCheckoutComplete();
-    });
+            await checkoutPage.continueCheckout();
+            await checkoutPage.expectOverviewPageVisible();
+            await checkoutPage.finishCheckout();
+            await checkoutPage.expectCheckoutComplete();
+        });
+    }
 });
