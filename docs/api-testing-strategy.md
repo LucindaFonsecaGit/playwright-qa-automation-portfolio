@@ -8,17 +8,17 @@ The API tests demonstrate how a QA Engineer can validate REST APIs using Playwri
 
 ## Scope
 
-The current API suite covers the FakeStore API product endpoints.
+The current API suite covers the JSONPlaceholder API product endpoints.
 
 Covered scenarios:
 
-- Retrieve all products
-- Retrieve a single product
-- Retrieve product categories
-- Retrieve products by category
-- Create a product
-- Update a product
-- Delete a product
+- Retrieve all posts
+- Retrieve a single post
+- Retrieve product comments
+- Retrieve post by comment
+- Create a post
+- Update a post
+- Delete a post
 - Validate invalid endpoint behaviour
 
 ## Validation Strategy

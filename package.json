@@ -7,6 +7,9 @@
     "test:ui": "playwright test tests/ui",
     "test:api": "playwright test tests/api",
     "test:responsive": "playwright test tests/responsive",
+    "test:bdd": "cucumber-js",
+    "test:bdd:smoke": "cucumber-js --tags @smoke",
+    "test:bdd:regression": "cucumber-js --tags @regression",
     "test:chromium": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
@@ -28,7 +31,9 @@
   "homepage": "https://github.com/LucindaFonsecaGit/playwright-qa-automation-portfolio#readme",
   "description": "",
   "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.61.0",
-    "@types/node": "^25.9.3"
+    "@types/node": "^25.9.3",
+    "ts-node": "^10.9.2"
   }
 }
