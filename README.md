@@ -13,6 +13,9 @@ It is designed as a portfolio project to showcase practical skills in:
 - BDD examples with Gherkin
 - QA documentation and test strategy
 
+## Portfolio Goal
+The goal of this repository is to demonstrate how I would structure and maintain a QA automation framework in a professional software engineering environment.
+
 ## Tech Stack
 
 - Playwright
@@ -54,10 +57,56 @@ Run UI tests:
 npx playwright test tests/ui
 ```
 
+Run API tests:
+```bash
+npm run test:api
+```
+
+Run smoke tests:
+```bash
+npm run test:smoke
+```
+
+Run regression tests:
+```bash
+npm run test:regression
+```
+
 Open report:
 ```bash
 npx playwright show-report
 ```
 
-## Portfolio Goal
-The goal of this repository is to demonstrate how I would structure and maintain a QA automation framework in a professional software engineering environment.
+## API Testing
+
+This repository includes REST API tests using Playwright's `request` fixture and the FakeStore API.
+
+Covered examples:
+
+- GET all products
+- GET single product
+- GET product categories
+- GET products by category
+- POST create product
+- PUT update product
+- DELETE product
+- Invalid endpoint validation
+
+These tests validate:
+
+- HTTP status codes
+- Response headers
+- JSON response structure
+- Required fields
+- Data consistency
+- Positive and negative API behaviour
+- Basic response time thresholds
+
+The API layer is structured with:
+
+- reusable API client methods
+- reusable assertion helpers
+- separated test data
+- smoke/regression/negative tags
+
+See [`docs/api-testing-strategy.md`](docs/api-testing-strategy.md) for more details.
