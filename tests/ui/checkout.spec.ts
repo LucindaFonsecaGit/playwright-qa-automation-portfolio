@@ -4,6 +4,8 @@ import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
 import { CheckoutPage } from '../../pages/CheckoutPage';
 import { checkoutCustomers } from '../../test-data/ui/checkoutCustomers';
+import { USERS } from '../../constants/users';
+import { PRODUCTS } from '../../constants/products';
 
 test.describe('Checkout smoke tests', () => {
     for (const customer of checkoutCustomers) {
@@ -14,9 +16,9 @@ test.describe('Checkout smoke tests', () => {
             const checkoutPage = new CheckoutPage(page);
 
             await loginPage.goto();
-            await loginPage.login('standard_user', 'secret_sauce');
+            await loginPage.login(USERS.STANDARD.username, USERS.STANDARD.password);
 
-            await inventoryPage.addProductToCart('sauce-labs-backpack');
+            await inventoryPage.addProductToCart(PRODUCTS.BACKPACK.testId);
             await inventoryPage.openCart();
 
             await cartPage.expectCartPageVisible();

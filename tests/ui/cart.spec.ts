@@ -3,6 +3,7 @@ import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
 import { cartProducts } from '../../test-data/ui/products';
+import { USERS } from '../../constants/users';
 
 test.describe('Cart tests', () => {
     for (const product of cartProducts) {
@@ -12,7 +13,7 @@ test.describe('Cart tests', () => {
             const cartPage = new CartPage(page);
 
             await loginPage.goto();
-            await loginPage.login('standard_user', 'secret_sauce');
+            await loginPage.login(USERS.STANDARD.username, USERS.STANDARD.password);
 
             await inventoryPage.addProductToCart(product.testId);
             await inventoryPage.expectCartBadgeCount('1');

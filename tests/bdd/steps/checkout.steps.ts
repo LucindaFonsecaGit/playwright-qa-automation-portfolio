@@ -4,13 +4,14 @@ import { LoginPage } from '../../../pages/LoginPage';
 import { InventoryPage } from '../../../pages/InventoryPage';
 import { CartPage } from '../../../pages/CartPage';
 import { CheckoutPage } from '../../../pages/CheckoutPage';
+import { USERS } from '../../constants/users';
 
 Given('I am logged in as a standard user', async function (this: CustomWorld) {
     const loginPage = new LoginPage(this.page);
     const inventoryPage = new InventoryPage(this.page);
 
     await loginPage.goto();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.login( USERS.STANDARD.username, USERS.STANDARD.password);
     await inventoryPage.expectInventoryPageVisible();
 });
 

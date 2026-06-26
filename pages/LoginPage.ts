@@ -1,4 +1,5 @@
 import { expect, Page } from '@playwright/test';
+import { URLS } from '../constants/urls';
 
 export class LoginPage {
     readonly page: Page;
@@ -8,7 +9,7 @@ export class LoginPage {
     }
 
     async goto() {
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto(URLS.SAUCE_DEMO);
     }
 
     async expectLogoVisible() {
