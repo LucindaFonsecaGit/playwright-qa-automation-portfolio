@@ -8,35 +8,53 @@ export class LoginPage {
         this.page = page;
     }
 
+    private usernameInput = '[data-test="username"]';
+    private passwordInput = '[data-test="password"]';
+    private loginButton = '[data-test="login-button"]';
+    private errorMessage = '[data-test="error"]';
+    private logo = '.login_logo';
+
     async goto() {
         await this.page.goto(URLS.SAUCE_DEMO);
     }
 
-    async expectLogoVisible() {
-        await expect(this.page.locator('.login_logo')).toBeVisible();
+    async enterUsername(username: string) {
+        await this.page.locator(this.usernameInput).fill(username);
+    }
+
+    async enterPassword(password: string) {
+        await this.page.locator(this.passwordInput).fill(password);
+    }
+
+    async clickLogin() {
+        await this.page.locator(this.loginButton).click();
     }
 
     async login(username: string, password: string) {
-        await this.page.locator('[data-test="username"]').fill(username);
-        await this.page.locator('[data-test="password"]').fill(password);
-        await this.page.locator('[data-test="login-button"]').click();
+        await this.enterUsername(username);
+        await this.enterPassword(password);
+        await this.clickLogin();
     }
 
     async submitLoginForm() {
-        await this.page.locator('[data-test="login-button"]').click();
+        await this.clickLogin();
     }
 
     async expectLoginPageVisible() {
-        await expect(this.page.locator('[data-test="username"]')).toBeVisible();
-        await expect(this.page.locator('[data-test="password"]')).toBeVisible();
-        await expect(this.page.locator('[data-test="login-button"]')).toBeVisible();
+        await expect(this.page.locator(this.usernameInput)).toBeVisible();
+        await expect(this.page.locator(this.passwordInput)).toBeVisible();
+        await expect(this.page.locator(this.loginButton)).toBeVisible();
     }
 
     async expectErrorMessage(message: string) {
-        await expect(this.page.locator('[data-test="error"]')).toContainText(message);
+        await expect(this.page.locator(this.errorMessage)).toContainText(message);
     }
 
     async expectUsernameFieldFocused() {
-        await expect(this.page.locator('[data-test="username"]')).toBeFocused();
+        await expect(this.page.locator(this.usernameInput)).toBeFocused();
+    }
+
+    async expectLogoVisible() {
+        await expect(this.page.locator(this.logo)).toBeVisible();
     }
 }
