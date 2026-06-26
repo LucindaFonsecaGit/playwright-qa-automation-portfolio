@@ -1,11 +1,10 @@
 import { expect, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 import { SortOption } from '../enums/SortOption';
 
-export class InventoryPage {
-    readonly page: Page;
-
+export class InventoryPage extends BasePage {
     constructor(page: Page) {
-        this.page = page;
+        super(page);
     }
 
     private pageTitle = '[data-test="title"]';

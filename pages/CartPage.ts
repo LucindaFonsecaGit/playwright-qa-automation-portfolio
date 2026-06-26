@@ -1,10 +1,9 @@
 import { expect, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class CartPage {
-    readonly page: Page;
-
+export class CartPage extends BasePage {
     constructor(page: Page) {
-        this.page = page;
+        super(page);
     }
 
     private pageTitle = '[data-test="title"]';

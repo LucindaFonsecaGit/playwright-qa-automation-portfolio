@@ -1,11 +1,10 @@
 import { expect, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 import { URLS } from '../constants/urls';
 
-export class LoginPage {
-    readonly page: Page;
-
+export class LoginPage extends BasePage {
     constructor(page: Page) {
-        this.page = page;
+        super(page);
     }
 
     private usernameInput = '[data-test="username"]';
