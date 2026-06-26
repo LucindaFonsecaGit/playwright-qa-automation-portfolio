@@ -1,6 +1,6 @@
 import { expect, Page } from '@playwright/test';
 import { BasePage } from './BasePage';
-import { URLS } from '../constants/urls';
+import { Config } from '../config';
 
 export class LoginPage extends BasePage {
     constructor(page: Page) {
@@ -14,7 +14,7 @@ export class LoginPage extends BasePage {
     private logo = '.login_logo';
 
     async goto() {
-        await this.page.goto(URLS.SAUCE_DEMO);
+        await this.page.goto(Config.baseUrl);
     }
 
     async enterUsername(username: string) {
