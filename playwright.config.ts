@@ -11,6 +11,8 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+import { BrowserName } from './enums/BrowserName';
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -35,23 +37,23 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: BrowserName.CHROMIUM,
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      name: 'firefox',
+      name: BrowserName.FIREFOX,
       use: { ...devices['Desktop Firefox'] },
     },
     {
-      name: 'webkit',
+      name: BrowserName.WEBKIT,
       use: { ...devices['Desktop Safari'] },
     },
     {
-      name: 'Mobile Chrome',
+      name: BrowserName.MOBILE_CHROME,
       use: { ...devices['Pixel 5'] },
     },
     {
-      name: 'Mobile Safari',
+      name: BrowserName.MOBILE_SAFARI,
       use: { ...devices['iPhone 12'] },
     },
   ],

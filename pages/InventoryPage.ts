@@ -1,4 +1,5 @@
 import { expect, Page } from '@playwright/test';
+import { SortOption } from '../enums/SortOption';
 
 export class InventoryPage {
     readonly page: Page;
@@ -17,7 +18,7 @@ export class InventoryPage {
         await expect(this.page.locator('[data-test="inventory-item"]')).toHaveCount(6);
     }
 
-    async sortBy(option: string) {
+    async sortBy(option: SortOption) {
         await this.page.locator('[data-test="product-sort-container"]').selectOption(option);
     }
 
